@@ -1,0 +1,33 @@
+def detectorWrapper(detect, serverOB, start,window, q):
+    try:
+        predFrame = np.array([[50, 0, 0, 0,'lin_er0']], dtype=object)
+        while serverOB.server.connected:
+            if len(predFrame) <= 100:
+                for counter in range(99):
+                    dataTensor, data = serverOB.dataSample()
+                    result, HI = detect.predict(dataTensor)
+                    sinceStart = time.time() - start
+                    send = (HI, data)
+                    window.window.write_event_value('-CURRENT_HI-',send)
+                    rows = [HI, sinceStart,result,sinceStart,'lin_er0']
+                    if counter == 0:
+                        predFrame[0] = rows
+                    predFrame = np.vstack((predFrame,rows))
+            else:
+                dataTensor, data = serverOB.dataSample()
+                result, HI = detect.predict(dataTensor)
+                sinceStart = time.time() - start
+                send = (HI, data)
+                window.window.write_event_value('-CURRENT_HI-',send)
+                rows = [HI, sinceStart,result,sinceStart,'lin_er0']
+                if counter == 0:
+                    predFrame[0] = rows
+                predFrame = np.vstack((predFrame,rows))
+            #for i in range(1,51):
+            #    futureTime = i*2.4+ sinceStart
+            #    row = [0, futureTime, 0, futureTime, 'lin_er0']
+            #    predFrame = np.vstack((predFrame,row))
+            window.window.write_event_value('-PREDICTIONS-', predFrame)
+    except server.ClientStop:
+        q.put(1)
+    return

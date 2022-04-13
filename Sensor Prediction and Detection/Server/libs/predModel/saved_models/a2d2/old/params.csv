@@ -1,0 +1,22 @@
+,"[3]_[('id', <DataTypes.CATEGORICAL: 1>, <InputTypes.ID: 4>), ('t', <DataTypes.REAL_VALUED: 0>, <InputTypes.TIME: 5>), ('time_from_start', <DataTypes.REAL_VALUED: 0>, <InputTypes.KNOWN_INPUT: 2>), ('health_index', <DataTypes.REAL_VALUED: 0>, <InputTypes.TARGET: 0>), ('categorical_id', <DataTypes.CATEGORICAL: 1>, <InputTypes.STATIC_INPUT: 3>)]_0.4_5_40_[1]_3_[0]_[0]_0.001_0.01_64_.\.csv\saved_models\a2d2\fixed_5_100_100_1_1_1_[2]_150"
+dropout_rate,0.4
+hidden_layer_size,40
+learning_rate,0.001
+max_gradient_norm,0.01
+minibatch_size,64
+model_folder,.\.csv\saved_models\a2d2\fixed
+num_heads,1
+stack_size,1
+total_time_steps,150
+num_encoder_steps,100
+num_epochs,100
+early_stopping_patience,5
+multiprocessing_workers,5
+column_definition,"[('id', <DataTypes.CATEGORICAL: 1>, <InputTypes.ID: 4>), ('t', <DataTypes.REAL_VALUED: 0>, <InputTypes.TIME: 5>), ('time_from_start', <DataTypes.REAL_VALUED: 0>, <InputTypes.KNOWN_INPUT: 2>), ('health_index', <DataTypes.REAL_VALUED: 0>, <InputTypes.TARGET: 0>), ('categorical_id', <DataTypes.CATEGORICAL: 1>, <InputTypes.STATIC_INPUT: 3>)]"
+input_size,3
+output_size,1
+category_counts,[3]
+input_obs_loc,[1]
+static_input_loc,[2]
+known_regular_inputs,[0]
+known_categorical_inputs,[0]
